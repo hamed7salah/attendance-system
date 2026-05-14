@@ -26,18 +26,24 @@ Streamlit App → CV Pipeline (RetinaFace + ByteTrack + ArcFace) → PostgreSQL 
 
 ## 🚀 Quick Start
 
-### Option 1: Docker (Recommended)
+### Option 1: Docker (Recommended - No Installation Required!)
 
+**Windows Users:**
 ```bash
-# Clone repository
-git clone <your-repo-url>
-cd attendance-system
+# Double-click start.bat
+# OR run in terminal:
+start.bat
+```
 
+**Linux/Mac Users:**
+```bash
 # Start services
-docker-compose up
+docker-compose up -d
 
 # Access app at http://localhost:8501
 ```
+
+**📖 For detailed Docker setup instructions, see [DOCKER_SETUP.md](DOCKER_SETUP.md)**
 
 ### Option 2: Local Development
 
@@ -51,6 +57,8 @@ docker-compose up -d postgres
 # Run app
 streamlit run app.py
 ```
+
+**Note:** Since you're using a company laptop without installation permissions, **Option 1 (Docker)** is perfect for you! Just make sure Docker Desktop is already installed.
 
 ## 📁 Project Structure
 

@@ -17,8 +17,8 @@ from datetime import date, datetime, timedelta
 from dotenv import load_dotenv
 import pandas as pd
 
-# Load environment variables
-load_dotenv()
+# Load environment variables without overriding existing container env vars
+load_dotenv(override=False)
 
 # Import our modules
 from cv_pipeline import FaceDetector, FaceRecognizer, FaceTracker

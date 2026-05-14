@@ -1,6 +1,9 @@
 -- Enable pgvector extension
 CREATE EXTENSION IF NOT EXISTS vector;
 
+-- Grant privileges to user
+GRANT ALL PRIVILEGES ON DATABASE attendance_db TO attendance;
+
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
