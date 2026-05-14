@@ -1,0 +1,27 @@
+# Core dependencies
+streamlit
+opencv-python
+numpy
+pillow
+
+# Database
+psycopg2-binary
+pgvector
+python-dotenv
+
+# Computer Vision
+insightface
+onnxruntime
+scikit-learn
+
+# Tracking
+boxmot
+scipy
+
+# Utilities
+matplotlib
+pandas
+
+# Jupyter (for learning notebooks)
+jupyter
+ipykernel

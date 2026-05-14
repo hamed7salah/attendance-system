@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with pgvector extension
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: attendance-postgres
+    environment:
+      POSTGRES_USER: attendance
+      POSTGRES_PASSWORD: attendance123
+      POSTGRES_DB: attendance_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U attendance"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - attendance-network
+
+  # Streamlit application
+  app:
+    build: .
+    container_name: attendance-app
+    ports:
+      - "8501:8501"
+    environment:
+      DATABASE_URL: postgresql://attendance:attendance123@postgres:5432/attendance_db
+    volumes:
+      - ./:/app
+      - ./storage:/app/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - attendance-network
+    command: streamlit run app.py --server.address=0.0.0.0
+
+volumes:
+  postgres_data:
+
+networks:
+  attendance-network:
+    driver: bridge
